@@ -3,14 +3,12 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    let cache={}
+    let cache=new Set()
     for(let i=0;i<nums.length;i++){
-        if(cache[nums[i]]===true){
+        if(cache.has(nums[i])){
             return true;
         }
-        else{
-            cache[nums[i]]=true
-        }
+        cache.add(nums[i])
     }
     return false
 };
