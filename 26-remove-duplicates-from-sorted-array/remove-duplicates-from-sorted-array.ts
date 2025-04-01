@@ -5,9 +5,6 @@ function removeDuplicates(nums: number[]): number {
            nums[++k]=nums[i]
         
         }
-     
-      
     }
-    console.log(nums)
     return k+1;
 };
