@@ -11,7 +11,6 @@ function longestConsecutive(nums: number[]): number {
         y=y+1
       }
       output=Math.max(output,temp)
-     
     }
   }
   
