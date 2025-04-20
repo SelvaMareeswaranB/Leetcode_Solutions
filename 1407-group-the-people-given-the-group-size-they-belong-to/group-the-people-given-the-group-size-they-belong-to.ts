@@ -1,25 +1,17 @@
 function groupThePeople(groupSizes: number[]): number[][] {
-  let result: number[][] = [];
-  let cache = new Map();
+  let cache: { [key: number]: number[][] } = {};
   for (let i = 0; i < groupSizes.length; i++) {
-    let temp = cache.get(groupSizes[i]);
-
-    if (temp) {
-      cache.set(groupSizes[i], [...temp, i]);
+    let groupSize = groupSizes[i];
+    if (!cache[groupSize]) {
+      cache[groupSize] = [[]];
+    }
+    let arr = cache[groupSize][cache[groupSize].length - 1];
+    if (arr.length === groupSize) {
+      cache[groupSize].push([i]);
     } else {
-      cache.set(groupSizes[i], [i]);
+      arr.push(i);
     }
   }
-
-  for (let [key, value] of cache) {
-    if (value.length > key) {
-      for (let i = 0; i < value.length; i + key) {
-        result.push(value.splice(i, i + key));
-      }
-    } else {
-      result.push(value);
-    }
-  }
-
+  let result = Object.values(cache).flat();
   return result;
 }
