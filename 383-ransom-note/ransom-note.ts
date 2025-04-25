@@ -8,5 +8,11 @@ function canConstruct(ransomNote: string, magazine: string): boolean {
     console.log(magazine.charCodeAt(i) - 97)
     cache[magazine.charCodeAt(i) - 97]--
   }
-  return cache.every((ele)=>ele<1);
+   for (let i = 0; i < 26; i++) {
+    if (cache[i] > 0) {
+      return false;
+    }
+  }
+
+  return true;
 }
