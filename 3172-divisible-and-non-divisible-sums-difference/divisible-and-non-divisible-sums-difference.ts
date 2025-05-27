@@ -5,8 +5,8 @@ function differenceOfSums(n: number, m: number): number {
         return n * (n + 1) / 2
     }
     for (let i = 1; i <= n; i++) {
-        if (i % m !== 0) num1 += i
-        else num2 += i
+        i % m !== 0 ? num1 += i : num2 += i
+
     }
 
     return num1 - num2
