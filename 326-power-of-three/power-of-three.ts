@@ -1,4 +1,7 @@
 function isPowerOfThree(n) {
-    const MAX_POWER_OF_3 = 1162261467;
-    return n > 0 && (MAX_POWER_OF_3 % n === 0);
+ if(n<=0) return false
+ while(n%3 === 0){
+    n=n/3
+ }
+ return n===1
 }
