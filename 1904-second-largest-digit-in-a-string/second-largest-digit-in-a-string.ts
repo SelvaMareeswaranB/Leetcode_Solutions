@@ -1,24 +1,20 @@
 function secondHighest(s: string): number {
-  let secondLargest = -1  
-  let firstLargest = -1
-  for(const str of s){
-       
-    if(!Number.isNaN(Number(str))){
-       let num = Number(str)
-       if(num>firstLargest){
-            secondLargest = firstLargest
-           firstLargest = num
-          
-       }
-       else if(num>secondLargest && num !== firstLargest){
-           secondLargest=num
-       }
-    }
-  }
+let first = -1
+let second = -1
 
-    return secondLargest
+for(const ch of s){
+    const num = Number(ch)
+    if(num > first){
+           second=first
+        first = num
+     
+    }
+    else if(num > second && num !== first){
+        second = num
+    }
+}
+return second
 
 };
 
 
-console.log(secondHighest("ck111"))
