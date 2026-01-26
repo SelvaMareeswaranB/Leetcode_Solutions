@@ -57,11 +57,8 @@ class MyLinkedList {
   addAtIndex(index: number, val: number): void {
     if (index < 0 || index > this.size) return;
 
-    if (index === 0) {
-      this.addAtHead(val);
-      return;
-    }
-
+   if (index === 0) return this.addAtHead(val);
+        if (index === this.size) return this.addAtTail(val);
     let curr = this.head;
     let i = 0;
 
