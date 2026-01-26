@@ -10,102 +10,104 @@
 
 class MyLinkedList {
   head: ListNode | null;
+  size: number;
+
   constructor() {
     this.head = null;
+    this.size = 0;
   }
 
   get(index: number): number {
-    let trackIndex = 0;
+    if (index < 0 || index >= this.size) return -1;
+
     let curr = this.head;
-    let foundedIndex = -1;
+    let i = 0;
+
     while (curr) {
-      if (trackIndex === index) {
-        foundedIndex = curr.val;
-        break
-      }
-      trackIndex++;
+      if (i === index) return curr.val;
       curr = curr.next;
+      i++;
     }
-   return foundedIndex;
+    return -1;
   }
 
   addAtHead(val: number): void {
-    const newNode = new ListNode(val, null);
-    if (!this.head) {
-      this.head = newNode;
-      return;
-    }
-    const temp = this.head;
-    newNode.next = temp;
+    const newNode = new ListNode(val, this.head);
     this.head = newNode;
+    this.size++;
   }
 
   addAtTail(val: number): void {
     const newNode = new ListNode(val, null);
+
     if (!this.head) {
       this.head = newNode;
+      this.size++;
       return;
     }
 
     let curr = this.head;
-
-    while (curr && curr.next) {
+    while (curr.next) {
       curr = curr.next;
     }
     curr.next = newNode;
+    this.size++;
   }
 
- addAtIndex(index: number, val: number): void {
+  addAtIndex(index: number, val: number): void {
+    if (index < 0 || index > this.size) return;
+
     if (index === 0) {
       this.addAtHead(val);
       return;
     }
 
-    let trackIndex = 0;
     let curr = this.head;
-    const newNode = new ListNode(val, null);
+    let i = 0;
+
     while (curr) {
-      trackIndex++;
-      if (trackIndex === index) {
-        const temp = curr.next;
-        newNode.next = temp;
+      if (i === index - 1) {
+        const newNode = new ListNode(val, curr.next);
         curr.next = newNode;
+        this.size++;
         return;
       }
       curr = curr.next;
+      i++;
     }
-    //   this.addAtTail(val)
   }
 
   deleteAtIndex(index: number): void {
-    if (index === 0 && this.head) {
-      this.head = this.head.next;
+    if (index < 0 || index >= this.size) return;
+
+    if (index === 0) {
+      this.head = this.head?.next ?? null;
+      this.size--;
       return;
     }
 
-    let prev = this.head;
-    let curr = this.head?.next ?? null;
-    let trackIndex = 1;
+    let curr = this.head;
+    let i = 0;
 
     while (curr) {
-      if (trackIndex === index) {
-        prev!.next = curr.next;
+      if (i === index - 1) {
+        curr.next = curr.next?.next ?? null;
+        this.size--;
         return;
       }
-      prev = curr;
       curr = curr.next;
-      trackIndex++;
+      i++;
     }
   }
-  findLength(): number {
+
+  print(): number {
     let head = this.head;
     let length = 0;
     while (head) {
       console.log(head.val);
-      head = head?.next;
+      head = head.next;
       length++;
     }
-    console.log(length);
     return length;
   }
 }
