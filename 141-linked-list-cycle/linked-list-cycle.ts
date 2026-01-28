@@ -13,14 +13,12 @@
 function hasCycle(head: ListNode | null): boolean {
         let slow: ListNode | null = head;
     let fast: ListNode | null = head?.next ?? null;
-    let isCycleDeteced = false;
     while (fast || slow) {
       if (slow === fast) {
-        isCycleDeteced = true;
-        break;
+    return true
       }
       slow = slow?.next ?? null;
       fast = fast?.next?.next ?? null;
     }
-    return isCycleDeteced;
+    return false;
 };
