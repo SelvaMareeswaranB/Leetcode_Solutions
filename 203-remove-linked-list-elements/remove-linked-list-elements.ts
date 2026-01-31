@@ -10,22 +10,46 @@
  * }
  */
 
-function removeElements(head: ListNode | null, val: number): ListNode | null {
-    if (!head) return null
-    let newHead= head
-    let curr = head;
-    let prev = head;
+// function removeElements(head: ListNode | null, val: number): ListNode | null {
+//     if (!head) return null
+//     let newHead= head
+//     let curr = head;
+//     let prev = head;
 
-    while (curr) {
-      if (curr.val === val) {
-        if (newHead === curr) newHead = curr.next;
-        if (prev) prev.next = curr.next;
+//     while (curr) {
+//       if (curr.val === val) {
+//         if (newHead === curr) newHead = curr.next;
+//         if (prev) prev.next = curr.next;
         
-      } else {
-        prev = curr;
-      }
+//       } else {
+//         prev = curr;
+//       }
 
-      curr = curr.next;
+//       curr = curr.next;
+//     }
+//     return newHead
+// }
+
+
+
+function removeElements(
+  head: ListNode | null,
+  val: number
+): ListNode | null {
+  const dummy = new ListNode(0);
+  dummy.next = head;
+
+  let prev = dummy;
+  let curr = head;
+
+  while (curr) {
+    if (curr.val === val) {
+      prev.next = curr.next;
+    } else {
+      prev = curr;
     }
-    return newHead
+    curr = curr.next;
+  }
+
+  return dummy.next;
 }
