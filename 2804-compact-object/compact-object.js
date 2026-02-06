@@ -8,6 +8,7 @@ function isPlainObject(value) {
 }
 
 var compactObject = function (obj) {
+     if (!obj) return obj;
     const isObject = isPlainObject(obj);
     let ans = isObject ? {} : [];
 
