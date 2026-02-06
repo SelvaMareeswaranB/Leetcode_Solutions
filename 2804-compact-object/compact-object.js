@@ -8,16 +8,17 @@ function isPlainObject(value) {
 }
 
 var compactObject = function (obj) {
-    let ans = isPlainObject(obj) ? {} : [];
+    const isObject = isPlainObject(obj);
+    let ans = isObject ? {} : [];
+
 
     for (let i in obj) {
-        const isObject = isPlainObject(obj[i]);
-        if (isObject || Array.isArray(obj[i])) {
-            isPlainObject(obj)
+        if (isPlainObject(obj[i]) || Array.isArray(obj[i])) {
+            isObject
                 ? (ans[i] = compactObject(obj[i]))
                 : ans.push(compactObject(obj[i]));
         } else {
-            Boolean(obj[i]) ? (isPlainObject(obj) ? (ans[i] = obj[i]) : ans.push(obj[i])) : "";
+            Boolean(obj[i]) ? (isObject ? (ans[i] = obj[i]) : ans.push(obj[i])) : "";
         }
     }
     return ans;
