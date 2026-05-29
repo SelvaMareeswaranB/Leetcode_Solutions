@@ -1,25 +1,29 @@
- const pairs = {
-        "(" : ")",
-        "[":"]",
-        "{" : "}"
-    }
+const pairs = {
+    "(": ")",
+    "[": "]",
+    "{": "}"
+
+}
 
 
-function isValid(str: string): boolean {
-     let stack = []
-    for(let s of str){
-        if(s == "[" || s == "{" ||  s == "("){
-            stack.push(s)
+function isValid(str) {
+    let stack = []
+    for (let s of str) {
+        if (pairs[s]) {
+            stack.push(pairs[s])
         }
-        else{
+        else {
             let last = stack.pop()
-             if(last + pairs[last] !== last + s ) return false
+            if (last !== s) {
+                return false
+
+            }
         }
     }
-    
+
     return !stack.length
 };
+console.log(isValid("()"))
 
-   
 
 
