@@ -1,3 +1,10 @@
+ const pairs = {
+        "(" : ")",
+        "[":"]",
+        "{" : "}"
+    }
+
+
 function isValid(str: string): boolean {
      let stack = []
     for(let s of str){
@@ -6,20 +13,13 @@ function isValid(str: string): boolean {
         }
         else{
             let last = stack.pop()
-            console.log(PairParanthesis(last))
-             if(last + PairParanthesis(last) !== last + s ) return false
+             if(last + pairs[last] !== last + s ) return false
         }
     }
     
     return !stack.length
 };
 
-function PairParanthesis(key:string):string{
-    const pairs = {
-        "(" : ")",
-        "[":"]",
-        "{" : "}"
-    }
-    return pairs[key]
-}
+   
+
 
