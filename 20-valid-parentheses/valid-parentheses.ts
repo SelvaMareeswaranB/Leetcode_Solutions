@@ -23,7 +23,6 @@ function isValid(str) {
 
     return !stack.length
 };
-console.log(isValid("()"))
 
 
 
