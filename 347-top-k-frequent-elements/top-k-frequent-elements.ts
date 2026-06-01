@@ -1,15 +1,31 @@
 function topKFrequent(arr: number[], k: number): number[] {
-      let map =new Map<number,number>()
-    let result =[]
-    
-    for(let el of arr){
-        map.set(el,(map.get(el) ?? 0) + 1)
+    let map = new Map()
+    let result = []
+
+    for (let item of arr) {
+        map.set(item, (map.get(item) ?? 0) + 1)
     }
-    
-    const entries = [...map]
-    entries.sort((a, b) => b[1] - a[1]);
-    for(let i=0;i<k;i++){
-        result.push(entries[i][0])
+
+    const bucket = []
+
+    for (let item of map.keys()) {
+
+        const freq = map.get(item)
+        console.log(freq)
+        if (!bucket[freq]) {
+            bucket[freq] = []
+        }
+
+        bucket[freq].push(item)
     }
-    return result
+    const res = []
+
+    for (let i = bucket.length - 1; i >= 0; i--) {
+        if (!bucket[i]) continue
+        for (let item of bucket[i]) {
+            res.push(item)
+            if (res.length === k) return res
+        }
+    }
+    return res
 };
