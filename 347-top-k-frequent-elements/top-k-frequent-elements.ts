@@ -1,6 +1,5 @@
 function topKFrequent(arr: number[], k: number): number[] {
     let map = new Map()
-    let result = []
 
     for (let item of arr) {
         map.set(item, (map.get(item) ?? 0) + 1)
