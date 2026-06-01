@@ -10,13 +10,13 @@ function topKFrequent(arr: number[], k: number): number[] {
     for (let item of map.keys()) {
 
         const freq = map.get(item)
-        console.log(freq)
         if (!bucket[freq]) {
             bucket[freq] = []
         }
 
         bucket[freq].push(item)
     }
+
     const res = []
 
     for (let i = bucket.length - 1; i >= 0; i--) {
