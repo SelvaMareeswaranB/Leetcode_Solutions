@@ -4,11 +4,10 @@ function maxProfit(prices) {
 
     for (let i = 1; i < prices.length; i++) {
         maxProfit=Math.max(maxProfit,prices[i] - lowPrice)
-                lowPrice = Math.min(lowPrice, prices[i])
+       lowPrice = Math.min(lowPrice, prices[i])
 
     }
 
-    console.log(lowPrice,maxProfit)
     return maxProfit
 
 };
