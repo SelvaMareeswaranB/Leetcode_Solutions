@@ -1,4 +1,5 @@
 function maxProfit(prices) {
+     if (prices.length < 2) return 0;
     let maxProfit = 0
     let lowPrice = prices[0]
 
