@@ -1,13 +1,15 @@
-function maxSubArray(nums: number[]): number {
-  let sum=0;
- let max=-Infinity
+function maxSubArray(nums) {
 
-  for(let i=0;i<nums.length;i++){
-    sum+=nums[i]
-    max=Math.max(sum,max)
-    if(sum < 0) sum=0
- 
-  }
+    let sum = 0
+    let maxSum = -Infinity
+    for (let el of nums) {
+        if (sum < 0) {
+            sum = 0
+        }
+        sum += el
+        maxSum = Math.max(sum, maxSum)
+    }
 
-  return max
-}
+    return maxSum
+
+};
