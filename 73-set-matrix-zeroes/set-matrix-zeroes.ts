@@ -1,28 +1,28 @@
-function setZeroes(matrix: number[][]): void {
-  const n = matrix.length;
-  const m = matrix?.[0].length;
-  let col1 = 1;
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < m; j++) {
-      if (matrix[i][j] === 0) {
-        matrix[i][0] = 0;
-        if (j != 0) matrix[0][j]=0;
-        else col1 = 0;
-      }
+function setZeroes(matrix) {
+
+    let m = matrix.length
+    let n = matrix?.[0]?.length
+    let row = []
+    let col = []
+
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j] === 0) {
+                row.push(i)
+                col.push(j)
+            }
+
+        }
     }
-  }
 
-  for (let i = 1; i < n; i++) {
-    for (let j = 1; j < m; j++) {
-      if (matrix[i][0] === 0 || matrix[0][j] === 0) matrix[i][j] = 0;
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+           if(row.includes(i) || col.includes(j)){
+            console.log(i,j)
+            matrix[i][j] =0
+           }
+        }
     }
-  }
+    console.log(row, col,matrix)
 
-  if (matrix[0][0] === 0) {
-    for (let j = 0; j < m; j++) matrix[0][j] = 0;
-  }
-
-  if (col1 === 0) {
-    for (let i = 0; i < n; i++) matrix[i][0] = 0;
-  }
-}
+};
